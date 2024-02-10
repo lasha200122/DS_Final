@@ -16,12 +16,6 @@ XGB_MODEL = os.getenv("XGB_MODEL")
 PREDICTIONS_SAVE_PATH = os.getenv("PREDICTIONS_SAVE_PATH")
 
 def load_vectorizer(filename):
-    """
-    Load the vectorizer from the specified file.
-    
-    :param filename: The name of the file where the vectorizer is saved.
-    :return: The loaded vectorizer.
-    """
     vectorizer_path = os.path.join(PROCESSED_DATA_PATH, filename)
     vectorizer = joblib.load(vectorizer_path)
     return vectorizer
@@ -42,17 +36,14 @@ def predict(model, X):
 
 
 if __name__ == "__main__":
-    vectorizer = load_vectorizer('vectorizer.joblib')  # Ensure you have this function or just use joblib.load with the correct path
+    vectorizer = load_vectorizer('vectorizer.joblib')
 
-    # Load models
     rf_model = load_model(RANDOM_FOREST)
     lr_model = load_model(LOGISTIC_REGRESSION)
     xgb_model = load_model(XGB_MODEL)
 
-    # Load and transform test data
-    X_test = load_test_data()  # Make sure this loads the raw test data if you need to preprocess it
+    X_test = load_test_data()  
 
-    # Make predictions
     rf_predictions = predict(rf_model, X_test)
     lr_predictions = predict(lr_model, X_test)
     xgb_predictions = predict(xgb_model, X_test)
