@@ -18,3 +18,12 @@ def get_model_save_path():
 
 def get_predictions_save_path():
     return os.getenv('PREDICTIONS_SAVE_PATH', 'outputs/predictions/')
+
+def get_vectorizer_type():
+    return os.getenv('VECTORIZER_TYPE', 'tfidf')
+
+def get_processed_data_file():
+    return os.getenv('PROCESSED_DATA_FILE', 'processed_train.npz')
+
+def get_processed_test_file():
+    return os.getenv('PROCESSED_TEST_FILE', 'processed_test.npz')
